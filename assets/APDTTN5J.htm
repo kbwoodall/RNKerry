@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="/css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/mit_app_inventor.css">
+
+    <title>MIT App Inventor | Explore MIT App Inventor</title>
+    <style>
+     h2.summit {color: #F88D34; font-size: 24pt; font-weight: bold;padding-top: 15px;}
+     h2.reg { color: white; background-color: #128BA8; padding: 15px; font-size: 28pt;} 
+    </style>
+    <script type="text/javascript">
+     function ajax_get_json(){
+         var results = document.getElementById("results")
+         var hr = new XMLHttpRequest();
+         hr.open("GET", "/stats", true);
+         hr.setRequestHeader("Content-type", "application/json", true);
+         hr.onreadystatechange = function() {
+	     if(hr.readyState == 4 && hr.status == 200) {
+                 var data = JSON.parse(hr.responseText);
+                 var header = '<div class="row stats">\n' +
+                              '<div class="col-lg-2 my-auto">\n' +
+                              '<span class="stat-group">Active Users today:<br/>' + data.daily + '</span>\n' +
+                              '</div>\n' +
+                              '<div class="col-lg-2 my-auto">\n' +
+                              '<span class="stat-group">Active Users this week:<br/>' + data.weekly + '</span>\n' +
+                              '</div>\n' +
+                              '<div class="col-lg-2 my-auto">\n' +
+                              '<span class="stat-group">Active Users this month:<br/>' + data.monthly + '</span>\n' +
+                              '</div>\n' +
+                              '<div class="col-lg-2 my-auto">\n' +
+                              '<span class="stat-group">Registered Users:<br/>' + data.users + '</span>\n' +
+                              '</div>\n' +
+                              '<div class="col-lg-2 my-auto">\n' +
+                              '<span class="stat-group">Countries:<br/>195</span>\n' +
+                              '</div>\n' +
+                              '<div class="col-lg-2 my-auto">\n' +
+                              '<span class="stat-group">Apps Built: ' + data.projects + '</span>\n' +
+                              '</div>\n' +
+                              '</div>\n';
+	         results.innerHTML = header;
+	     }
+         }
+         hr.send(null);
+     }
+    </script>
+    <script type="text/javascript">
+     <!--//--><![CDATA[// ><!--
+
+                                   var gotoappinventor = function() {
+                                       var referrer = document.location.pathname;
+                                       var patt = /.*hour-of-code.*/;
+                                       if (referrer.match(patt)) {
+                                           window.open("http://code.appinventor.mit.edu/", "new");
+                                       } else {
+                                           window.open("http://ai2.appinventor.mit.edu/", "new");
+                                       }
+                                   }
+     //--><!]]>
+    </script><script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-31803258-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+</head>
+<body class="mit_app_inventor"><nav class="navbar navbar-expand-xl navbar-light">
+    <a class="navbar-brand" href="/">
+	<img src="/images/logo.png" alt="Logo">
+    </a>
+    <button type="button" class="btn create-btn" style="margin-right: 20px;" onclick="gotoappinventor();">Create Apps!</button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle Navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+	<ul class="navbar-nav" style="margin-left: auto;">
+	    <li class="nav-item dropdown">
+		<a class="nav-link" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    About
+		</a>
+		<div class="dropdown-menu">
+		    <a class="dropdown-item" href="/about-us">About App Inventor</a>
+		    <a class="dropdown-item" href="/explore/our-team">Our Team</a>
+		    <a class="dropdown-item" href="/explore/master-trainers">Master Trainers</a>
+		    <a class="dropdown-item" href="/explore/app-month-gallery">App of the Month</a>
+                    <a class="dropdown-item"
+                       href="/ai2/ReleaseNotes">Release Notes</a>
+		</div>
+	    </li>
+	    <li class="nav-item dropdown">
+		<a class="nav-link" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Educators
+		</a>
+		<div class="dropdown-menu">
+		    <a class="dropdown-item" href="/explore/teach" target="_blank">Teach</a>
+		    <a class="dropdown-item" href="/explore/ai2/tutorials">Tutorials</a>
+		    <a class="dropdown-item" href="/explore/ai-with-mit-app-inventor">AI with App Inventor</a>
+		</div>
+	    </li>
+	    <li class="nav-item dropdown">
+		<a class="nav-link" href="/news" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    News
+		</a>
+		<div class="dropdown-menu">
+		    <a class="dropdown-item" href="/explore/news">In the news</a>
+		    <a class="dropdown-item" href="/explore/events">Events</a>
+		    <a class="dropdown-item" href="/explore/stories">Stories from the field</a>
+		</div>
+	    </li>
+	    <li class="nav-item dropdown">
+		<a class="nav-link" href="/explore/resources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Resources
+		</a>
+		<div class="dropdown-menu">
+                    <a class="dropdown-item" href="/explore/get-started">Get Started</a>
+		    <a class="dropdown-item" href="/explore/library">Documentation</a>
+		    <a class="dropdown-item" href="https://groups.google.com/forum/#!forum/mitappinventortest"
+                       target="_blank">Forums</a>
+		    <a class="dropdown-item" href="/explore/ai2/tutorials">Tutorials</a>
+		    <a class="dropdown-item" href="/explore/books">Books</a>
+		    <a class="dropdown-item"
+                       href="https://github.com/mit-cml/appinventor-sources"
+                       target="_blank">Open Source Information</a>
+	            <a class="dropdown-item" href="/explore/research">Research</a>
+                    <a class="dropdown-item" href="/explore/hour-of-code">Hour of Code</a>
+                    <a class="dropdown-item" href="/explore/resources">Additional Resources</a>
+		</div>
+	    </li>
+            <li class="nav-item dropdown">
+		<a class="nav-link" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Blogs
+		</a>
+                <div class="dropdown-menu">
+		    <a class="dropdown-item" href="/explore/blog">App Inventor Blog</a>
+	        </div>
+            </li>
+        </ul>
+        <div style="display: inline-flex;margin-left:auto;margin-right:0">
+	    <a href="https://giving.mit.edu/give/to?fundId=3832320" target="_blank">
+                <button type="button" class="btn donate-btn" style="margin-right: 20px;">Donate</button></a>
+            <script>
+             (function() {
+                 var cx = '005719495929270354943:tlvxrelje-e';
+                 var gcse = document.createElement('script');
+                 gcse.type = 'text/javascript';
+                 gcse.async = true;
+                 gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                            '//www.google.com/cse/cse.js?cx=' + cx;
+                 var s = document.getElementsByTagName('script')[0];
+                 s.parentNode.insertBefore(gcse, s);
+             })();
+            </script>
+            <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+	<!-- <form class="form-inline" action="/action_page.php">
+	     <div class="form-group has-search">
+	     <span class="fa fa-search form-control-feedback"></span>
+	     <input type="text" class="form-control" placeholder="Search">
+	     </div>
+	     </form> -->
+    </div>
+</nav>
+<div class="container-fluid">
+	    <div class="header index">
+		<h1 class="font-weight-bold text-center offset-xl-1
+		col-xl-8">With MIT App Inventor,<br/>anyone can build apps with global impact</h1>
+		<div class="text-center">
+	    	    <a href="/about-us"><button type="button" class="btn btn-outline-light">Learn More</button></a>
+		</div>
+	    </div>
+            <div id="results" class="d-none d-lg-block">
+                <script type="text/javascript">ajax_get_json();</script>
+            </div>
+            <div class="row quick-link-cards">
+	<div class="col-lg-3 col-md-6">
+	    <div class="card shadow">
+		<div class="card-img card-img-top text-center">
+		    <i class="far fa-flag fa-8x"></i>
+		</div>
+		<div class="card-body">
+		    <h4 class="card-title text-center">Get Started</h4>
+		    <p class="card-text text-center">Follow these simple directions to build your first app!</p>
+		    <div class="text-center">
+			<a class="btn action-btn stretched-link" href="/explore/get-started" aria-haspopup="true" aria-expanded="false">
+			    Start Now
+			</a>
+		    </div>
+		</div>
+		</div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+	    <div class="card shadow">
+		<div class="card-img card-img-top text-center">
+		    <i class="far fa-lightbulb fa-8x"></i>
+		</div>
+		<div class="card-body">
+		    <h4 class="card-title text-center">Tutorials</h4>
+		    <p class="card-text text-center">Step-by-step guides show you how to create even more apps.</p>
+		    <div class="text-center">
+			<a class="btn action-btn stretched-link" href="/explore/ai2/tutorials"  aria-haspopup="true" aria-expanded="false">
+			    Get Going
+			</a>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+	    <div class="card shadow">
+		<div class="card-img card-img-top text-center">
+		    <i class="fas fa-chalkboard-teacher fa-8x"></i>
+		</div>
+		<div class="card-body">
+		    <h4 class="card-title text-center">Teach</h4>
+		    <p class="card-text text-center">Find out about curriculum and resources for teachers.</p>
+		    <div class="text-center">
+			<a class="btn action-btn stretched-link" href="/explore/teach"
+	                   target="_blank" aria-haspopup="true" aria-expanded="false">
+			    Learn More
+			</a>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+	    <div class="card shadow">
+		<div class="card-img card-img-top text-center">
+		    <i class="far fa-comment-alt fa-8x"></i>
+		</div>
+		<div class="card-body">
+		    <h4 class="card-title text-center">Forums</h4>
+		    <p class="card-text text-center">Join community forums to get answers to your questions.</p>
+		    <div class="text-center">
+			<a class="btn action-btn stretched-link" href="https://groups.google.com/forum/#!forum/mitappinventortest"
+	                   target="_blank" aria-haspopup="true" aria-expanded="false">
+			    Connect Now
+			</a>
+		    </div>
+		</div>
+	    </div>
+	</div>
+ 
+</div>
+
+<div class="row action-card-container"> 
+    <div class="col-sm-6  action-cards card-shadow">
+        <a  href="/explore/ai-with-mit-app-inventor"><img style="display: block; margin: auto; width: 80%; margin-top: 20px; margin-bottom: 10px;" src="/images/ai-with-mitai.png"></a>
+<center><a  href="/explore/ai-with-mit-app-inventor"><h2 style="color: #128BA8;">Artificial Intelligence with<br />App Inventor<br /><span style="font-size: 1.5rem;">New Curriculum and Teacher Resources</span></h2></a></center>
+
+
+    </div>
+    <div class="col-sm-6 action-cards card-shadow">
+        <style>
+.bottomtext {font-size: 24pt; color: #111; margin-top: 10px;}
+@media (max-width: 1200px) {
+    .bottomtext {font-size: 18pt; }
+}
+@media (max-width: 576px) {
+    .bottomtext {font-size: 16pt;}
+}
+}
+</style>
+<div class="row">
+<div class="my-auto action-card-content" style="width:100%;  text-align: center; padding: 0px 20px;">
+    <div class="h-100" style="background-color: #F88D34; margin-top: -20px; padding: 60px 0 35px 0; border-radius: 15px;" >
+        <span style="font-weight: bold;">
+            <a href="/explore/app-building-guides" style="color: white;">
+                Try our App Building Guides<br/>
+                for the<br/>
+                Youth Mobile Power Series
+            </a>
+        </span>
+        <p><span class="bottomtext">Made in partnership with <a target="_blank" href="https://yr.media/about-yr/">YR Media</a>.
+        </span></p>
+    </div>
+</div>
+</div>
+
+
+    </div>
+</div>
+<!-- <div class="row picture-break shadow"></div>
+   -->
+<div class="row news-header">
+	<div class="col-xl-12">
+    <h1 class="font-weight-bold text-center">News & Events</h1>
+	</div>
+</div>
+
+<div class="row news-cards">
+    <div class="col-xl-8">
+		<div class="card-columns accented-cards">
+	            
+	            
+		    <div class="card shadow" style="height: 535px;">
+			<div class="card-body">
+			    <h4 class="card-title">DOT Lebanon Transforms Marginalized Youth into Social Innovators and Leaders with MIT App Inventor</h4>
+			    <p class="card-text">
+	                        
+	                        <p>In a country where opportunities are not equally available to everyone, and digital literacy is almost non-existent for those who live in marginalized areas, DOT (Digital Opportunity Trust) Lebanon outreaches to youth to enhance their digital skills and prepare them for the future of jobs.</p> <p>DOT Lebanon is a Lebanese...
+	                        
+	                    </p>
+	                    
+	                    
+	                    <p class="card-text"><a href="/explore/stories/dot-lebanon" target="_blank">More</a></p>
+			</div>
+	            </div>
+	            
+		    <div class="card shadow" style="height: 535px;">
+			<div class="card-body">
+			    <h4 class="card-title">Empowering the Asian Community with Block Programming Tools</h4>
+			    <p class="card-text">
+	                        
+	                        <p>This is a guest blog by MIT Master Trainer Queena Ling In a fast-paced city like Hong Kong, every moment is a competition. This is especially true for people in Hong Kong; many of them have a fully packed schedule of activities - work, study, socialize, or self-learn. Among these...
+	                        
+	                    </p>
+	                    
+	                    
+	                    <p class="card-text"><a href="/explore/blogs/karen/2019/10/23/empowering-asian-community" target="_blank">More</a></p>
+			</div>
+	            </div>
+	            
+		    <div class="card shadow" style="height: 535px;">
+			<div class="card-body">
+			    <h4 class="card-title">Google Blockly Summit 2019 Recap</h4>
+			    <p class="card-text">
+	                        
+	                        <p>Last week I attended the Google Blockly Summit 2019. For those of you who might not know what Blockly is, it is the JavaScript library that powers MIT App Inventor’s blocks editor (also Scratch, Microsoft MakeCode, Code.org and many more). The summit was a two day event at Google’s Mountain...
+	                        
+	                    </p>
+	                    
+	                    
+	                    <p class="card-text"><a href="/blogs/evan/2019/10/15/blockly-summit-2019" target="_blank">More</a></p>
+			</div>
+	            </div>
+	            
+		    <div class="card shadow" style="height: 535px;">
+			<div class="card-body">
+			    <h4 class="card-title">App Inventor finally came to Tokyo!! First App Inventor workshop for educators in Tokyo</h4>
+			    <p class="card-text">
+	                        
+	                        <p>This is a guest blog by MIT Master Trainer Masao Ishihara.</p> <p>On September 4th, the first MIT App Inventor workshop for educators was held at STEMON head learning studio in Ogikubo, Tokyo. The workshop was planned and run by Masao Ishihara, the first MIT Master Trainer in Educational Mobile Computing...
+	                        
+	                    </p>
+	                    
+	                    
+	                    <p class="card-text"><a href="/blogs/karen/2019/10/10/tokyo-workshop" target="_blank">More</a></p>
+			</div>
+	            </div>
+	            
+		</div>
+		<div class="text-center view-more-container">
+			<button type="button" class="btn btn-outline-light font-weight-bold"
+	                onclick="window.open('/explore/news');">View More</button>
+	    </div>
+    </div>
+
+    <div class="col-xl-4">
+	<a class="twitter-timeline"
+	   data-height="900"
+	   href="https://twitter.com/mitappinventor">Tweets by @{mitappinventor}
+	</a>
+    </div>
+
+</div>
+
+
+        </div>
+        <div class="footer background-green">
+    <div class="row container">
+	<div class="col-xl-3">
+	    <h3>MIT App Inventor</h3>
+	    <!-- <form class="form-inline" action="/action_page.php">
+		 <div class="form-group has-search">
+		 <span class="fa fa-search form-control-feedback"></span>
+		 <input type="text" class="form-control" placeholder="Search">
+		 </div>
+		 </form> -->
+	</div>
+	<div class="col-xl-6 legal text-center">
+	    <ul>
+		<li>
+		    <a href="http://creativecommons.org/licenses/by-sa/3.0/"
+                       target="_blank" class="btn btn-link" role="button">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0</a>
+		</li>
+		<li>
+		    <a href="http://creativecommons.org/licenses/by-sa/3.0/"
+                       target="_blank" class="btn btn-link" role="button">Unported License Terms of Service</a>
+		</li>
+		<li>
+		    <a href="http://web.mit.edu" class="btn btn-link" role="button"
+                       target="_blank">© 2012-2019 Massachusetts Institute of Technology</a>
+		</li>
+	    </ul>
+	</div>
+	<div class="col-xl-3 links">
+            <a href="https://groups.google.com/forum/#!forum/mitappinventortest">Support / Help</a><br>
+            <a href="mailto:appinventor@mit.edu">Other Inquiries</a>
+	    <div>
+		<span>Twitter:</span>
+		<a href="https://twitter.com/mitappinventor"
+                   target="_blank" class="btn btn-link" role="button">@MITAppInventor</a>
+		<div>
+		    <div>
+			<span>GitHub:</span>
+			<a href="https://github.com/mit-cml" class="btn btn-link" role="button"
+                           target="_blank">mit-cml</a>
+			<div>
+			</div>
+	            </div>
+	        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="/js/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script async src="/js/widgets.js" charset="utf-8"></script>
+</body>
+</html>
